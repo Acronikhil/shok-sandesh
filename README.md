@@ -7,9 +7,10 @@ Digital condolence card (शोक संदेश) with a tappable Google Maps 
 - `index.html` – the page (styled with Tailwind CSS utility classes)
 - `src/styles.css` – Tailwind source: theme colours, fonts, shared styles
 - `assets/styles.css` – compiled CSS served by GitHub Pages (generated, but committed)
-- `assets/portrait.jpg` – portrait with lamps and garland shown at the top
+- `assets/papa.webp` – photograph (800×800, optimised from `Papa.png`)
+- `assets/lamps.webp` – hanging brass lamps cut out of the original card
 - `assets/location-qr.png` – QR code for the Google Maps location
-- `assets/preview.jpg` – preview image shown when the link is shared on WhatsApp
+- `assets/preview.jpg` – 1200×630 preview image shown when the link is shared on WhatsApp
 - `assets/card-background.jpg` – original card artwork (kept for reference)
 
 ## Editing

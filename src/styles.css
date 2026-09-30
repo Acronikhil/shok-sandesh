@@ -5,6 +5,7 @@
 @theme {
   --font-sans: "Mukta", "Noto Sans Devanagari", "Mangal", sans-serif;
   --font-display: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif;
+  --font-sanskrit: "Tiro Devanagari Sanskrit", "Tiro Devanagari Hindi", serif;
 
   --color-maroon-950: #2b0c04;
   --color-maroon-900: #3d1206;
@@ -31,6 +32,16 @@
   }
 }
 
+@keyframes sway {
+  0%, 100% { rotate: -1.6deg; }
+  50% { rotate: 1.6deg; }
+}
+
+@keyframes fall {
+  from { transform: translate3d(0, -6vh, 0) rotate(0deg); }
+  to { transform: translate3d(var(--dx), 106vh, 0) rotate(var(--rot)); }
+}
+
 @layer base {
   html {
     color-scheme: light;
@@ -39,20 +50,111 @@
 }
 
 @layer components {
-  /* Soft paper panel used for every section */
-  .panel {
-    @apply rounded-2xl border border-gold-300/70 bg-cream-50/90 shadow-[0_1px_0_#fff_inset,0_10px_30px_-12px_rgb(90_22_8/0.25)];
+  /* Warm paper with a faint gold floral repeat */
+  .bg-page {
+    background-color: var(--color-cream-200);
+    background-image:
+      radial-gradient(ellipse at top, #fffaf0f2 0%, #f7efd6d9 55%, #ead9adf2 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23b8862b' stroke-width='1' opacity='.55'%3E%3Cpath d='M28 18c3 3 3 7 0 10c-3-3-3-7 0-10zM28 38c3-3 3-7 0-10c-3 3-3 7 0 10zM18 28c3-3 7-3 10 0c-3 3-7 3-10 0zM38 28c-3-3-7-3-10 0c3 3 7 3 10 0z'/%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='56' cy='0' r='2'/%3E%3Ccircle cx='0' cy='56' r='2'/%3E%3Ccircle cx='56' cy='56' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed, scroll;
   }
 
-  /* Portrait: fade the painted card background into the page */
-  .hero-fade {
-    -webkit-mask-image:
-      linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
-      linear-gradient(to bottom, transparent, #000 8%, #000 80%, transparent);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
-      linear-gradient(to bottom, transparent, #000 8%, #000 80%, transparent);
-    mask-composite: intersect;
+  /* Card-like double gold border around the whole message */
+  .card-frame {
+    @apply rounded-[1.25rem] border-[1.5px] border-gold-500/80 bg-cream-50/55 shadow-[0_20px_60px_-25px_rgb(90_22_8/0.45)] backdrop-blur-[1px];
+  }
+  .card-frame::before {
+    content: "";
+    @apply pointer-events-none absolute inset-[6px] rounded-[0.9rem] border border-gold-500/50;
+  }
+
+  /* Burnished gold ring around the photograph */
+  .photo-frame {
+    background: conic-gradient(from 200deg, #8a5a10, #f6dc8c, #b7832a, #fff3c4, #9a6b12, #e9c46a, #7d560e, #f6dc8c, #8a5a10);
+    box-shadow:
+      0 0 0 2px #7d560e,
+      0 0 0 5px #f3e6c3,
+      0 0 0 6px #b8862b,
+      0 12px 30px -8px rgb(61 18 6 / 0.55);
+  }
+
+  .lamp {
+    @apply origin-top select-none;
+    filter: drop-shadow(0 6px 6px rgb(90 60 10 / 0.25));
+  }
+  .lamp-r {
+    scale: -1 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lamp { animation: sway 7s ease-in-out infinite; }
+    .lamp-r { animation-delay: -3.5s; }
+  }
+
+  /* Deep maroon name with a hint of gold light */
+  .text-gilded {
+    background: linear-gradient(180deg, #7a2410 0%, #5a1608 55%, #3d1206 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 0 #f3e6c3);
+  }
+
+  .panel {
+    @apply rounded-2xl border border-gold-300/80 bg-cream-50/95 shadow-[0_1px_0_#fff_inset,0_10px_30px_-14px_rgb(90_22_8/0.3)];
+  }
+
+  .section-title {
+    @apply mb-4 flex items-center justify-center gap-2 font-display text-2xl text-maroon-800;
+  }
+  .section-title .rule {
+    @apply h-px flex-1 bg-gradient-to-r from-transparent to-gold-700;
+  }
+  .section-title .rule-r {
+    @apply bg-gradient-to-l;
+  }
+
+  .event {
+    @apply relative flex items-stretch gap-4 overflow-hidden p-3 pr-4;
+  }
+  .event::after {
+    content: "";
+    @apply absolute inset-y-3 right-0 w-1 rounded-l-full bg-gradient-to-b from-gold-300 via-gold-500 to-gold-300;
+  }
+
+  .date-tile {
+    @apply flex w-18 shrink-0 flex-col items-center justify-center rounded-xl py-2 text-cream-50;
+    background: linear-gradient(160deg, #7a2410, #5a1608 55%, #3d1206);
+    box-shadow: inset 0 0 0 1px #e3c78799, inset 0 0 0 4px #5a1608, inset 0 0 0 5px #e3c78755;
+  }
+
+  .btn-maroon {
+    @apply text-cream-50 transition focus-visible:outline-3 focus-visible:-outline-offset-3 focus-visible:outline-gold-300;
+    background: linear-gradient(180deg, #7a2410, #5a1608);
+  }
+  .btn-maroon:hover { background: linear-gradient(180deg, #8c2c14, #6a1c0a); }
+
+  .contact {
+    @apply flex items-center gap-3 p-3 text-left transition hover:border-gold-500 focus-visible:outline-3 focus-visible:outline-gold-500 active:scale-[0.99];
+  }
+  .call-dot {
+    @apply grid size-11 shrink-0 place-items-center rounded-full text-cream-50 shadow-[inset_0_0_0_1px_#e3c78799] transition group-hover:brightness-110;
+    background: linear-gradient(160deg, #7a2410, #3d1206);
+  }
+
+  .shloka {
+    background:
+      radial-gradient(ellipse at top, #7a2410 0%, #5a1608 50%, #3d1206 100%);
+    box-shadow: inset 0 0 0 1px #e3c78766, inset 0 0 0 6px #5a1608, inset 0 0 0 7px #e3c78740, 0 18px 40px -18px rgb(61 18 6 / 0.7);
+  }
+
+  .petal {
+    position: absolute;
+    top: 0;
+    border-radius: 60% 0 60% 0;
+    opacity: 0.8;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
   }
 }
