@@ -17,34 +17,146 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/portrait.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/papa.webp">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="min-h-dvh bg-cream-200 bg-[radial-gradient(ellipse_at_top,#fdf9ee_0%,#f7efd6_55%,#efe2bd_100%)] bg-fixed font-sans text-maroon-900 antialiased">
+<body class="bg-page min-h-dvh font-sans text-maroon-900 antialiased">
 
-<main class="mx-auto flex max-w-xl flex-col gap-6 px-4 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:gap-8 sm:pt-8">
+<!-- Reusable ornaments -->
+<svg aria-hidden="true" class="hidden">
+  <symbol id="lotus" viewBox="0 0 40 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+      <path d="M20 3c4 4 5 10 0 17c-5-7-4-13 0-17z"/>
+      <path d="M20 20c-2-6-7-10-13-10c0 6 5 10 13 10zM20 20c2-6 7-10 13-10c0 6-5 10-13 10z"/>
+      <path d="M20 20c-6-2-12-2-18 1c5 2 11 2 18-1zM20 20c6-2 12-2 18 1c-5 2-11 2-18-1z"/>
+    </g>
+  </symbol>
+  <symbol id="corner" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M3 62V18A15 15 0 0 1 18 3h44" stroke-width="1.6"/>
+      <path d="M9 62V22A13 13 0 0 1 22 9h40" stroke-width=".9"/>
+    </g>
+    <g fill="currentColor">
+      <path d="M17 10l7 7l-7 7l-7-7z"/>
+      <circle cx="32" cy="17" r="1.6"/><circle cx="17" cy="32" r="1.6"/>
+      <circle cx="40" cy="17" r="1"/><circle cx="17" cy="40" r="1"/>
+    </g>
+  </symbol>
+  <symbol id="phone" viewBox="0 0 24 24">
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="mandala" viewBox="-100 -100 200 200"><g fill="none" stroke="currentColor" stroke-width=".7"><circle r="96"/><circle r="92" stroke-dasharray="1 3"/><circle r="70"/><circle r="44"/><circle r="40" stroke-dasharray="1 2.5"/><path transform="rotate(0.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(22.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(45.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(67.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(90.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(112.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(135.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(157.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(180.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(202.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(225.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(247.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(270.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(292.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(315.0)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(337.5)" d="M0-44C9-54 9-64 0-70C-9-64-9-54 0-44zM0-70C12-78 12-88 0-96C-12-88-12-78 0-70z"/><path transform="rotate(5.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(16.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(28.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(39.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(50.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(61.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(73.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(84.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(95.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(106.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(118.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(129.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(140.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(151.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(163.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(174.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(185.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(196.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(208.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(219.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(230.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(241.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(253.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(264.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(275.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(286.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(298.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(309.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(320.6)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(331.85)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(343.1)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(354.35)" d="M0-72q4 9 0 18q-4-9 0-18z"/><path transform="rotate(0)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(30)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(60)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(90)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(120)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(150)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(180)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(210)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(240)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(270)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(300)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><path transform="rotate(330)" d="M0-10C8-18 8-30 0-40C-8-30-8-18 0-10z"/><circle r="10"/></g></symbol>
+</svg>
+
+<div class="mx-auto max-w-2xl p-2 pt-[max(.5rem,env(safe-area-inset-top))] pb-[max(.5rem,env(safe-area-inset-bottom))] sm:p-6">
+<div class="card-frame relative">
+  <!-- corner flourishes -->
+  <svg aria-hidden="true" class="absolute top-0 left-0 size-12 text-gold-700 sm:size-16"><use href="#corner"/></svg>
+  <svg aria-hidden="true" class="absolute top-0 right-0 size-12 -scale-x-100 text-gold-700 sm:size-16"><use href="#corner"/></svg>
+  <svg aria-hidden="true" class="absolute bottom-0 left-0 size-12 -scale-y-100 text-gold-700 sm:size-16"><use href="#corner"/></svg>
+  <svg aria-hidden="true" class="absolute right-0 bottom-0 size-12 -scale-100 text-gold-700 sm:size-16"><use href="#corner"/></svg>
+
+<main class="relative flex flex-col gap-7 px-4 pt-6 pb-10 sm:gap-9 sm:px-10 sm:pt-8">
 
   <!-- ───────── Portrait & name ───────── -->
   <header class="text-center">
-    <p class="font-display text-lg tracking-wide text-gold-800">॥ ॐ शांति ॥</p>
+    <p class="font-display text-lg text-gold-800">॥ ॐ शांति ॥</p>
 
-    <img src="assets/portrait.jpg" width="930" height="630"
-         alt="स्व. श्री पूर्णानंद जी दुबे का चित्र, दीपों और पुष्पमाला के साथ"
-         class="hero-fade mx-auto -mt-1 w-full max-w-lg select-none" draggable="false">
+    <div class="relative mx-auto -mt-1 aspect-square w-full max-w-[420px]">
+      <!-- slowly turning mandala behind the portrait -->
+      <svg aria-hidden="true" class="absolute top-[40%] left-1/2 aspect-square w-[98%] -translate-1/2 text-gold-500/40 motion-safe:animate-[spin_240s_linear_infinite]"><use href="#mandala"/></svg>
+      <div aria-hidden="true" class="absolute top-[40%] left-1/2 size-[78%] -translate-1/2 rounded-full bg-[radial-gradient(circle,#fff8df_0%,#fff8df00_68%)]"></div>
 
-    <p class="-mt-2 flex items-center justify-center gap-3 text-lg font-bold text-gold-800 sm:text-xl">
-      <span aria-hidden="true" class="h-px w-10 bg-gradient-to-r from-transparent to-gold-700"></span>
+      <img src="assets/lamps.webp" alt="" width="222" height="355" class="lamp absolute top-0 left-[1%] w-[22%]">
+      <img src="assets/lamps.webp" alt="" width="222" height="355" class="lamp lamp-r absolute top-0 right-[1%] w-[22%]">
+
+      <div class="photo-frame absolute top-[40%] left-1/2 aspect-square w-[62%] -translate-1/2 rounded-full p-[3%]">
+        <div class="rounded-full bg-maroon-800 p-[2.2%] shadow-[inset_0_0_0_1px_#e9c46a]">
+          <img src="assets/papa.webp" width="800" height="800" alt="स्व. श्री पूर्णानंद जी दुबे" class="block aspect-square w-full rounded-full object-cover">
+        </div>
+      </div>
+
+      <!-- marigold garland -->
+      <svg aria-hidden="true" viewBox="0 0 400 400" class="pointer-events-none absolute inset-0 size-full drop-shadow-[0_2px_2px_rgb(90_22_8/0.3)]">
+        <defs><radialGradient id="gmo"><stop offset="0" stop-color="#ffb347"/><stop offset=".7" stop-color="#f07f13"/><stop offset="1" stop-color="#b9500a"/></radialGradient><radialGradient id="gmy"><stop offset="0" stop-color="#ffe27a"/><stop offset=".7" stop-color="#f7b500"/><stop offset="1" stop-color="#c08400"/></radialGradient><g id="mo"><circle r="11.5" fill="url(#gmo)"/><g fill="#f28a1c" stroke="#b24c06" stroke-width=".5"><ellipse cx="8.2" cy="0.0" rx="3.6" ry="2.5" transform="rotate(0.0 8.2 0.0)"/><ellipse cx="7.4" cy="3.6" rx="3.6" ry="2.5" transform="rotate(25.7 7.4 3.6)"/><ellipse cx="5.1" cy="6.4" rx="3.6" ry="2.5" transform="rotate(51.4 5.1 6.4)"/><ellipse cx="1.8" cy="8.0" rx="3.6" ry="2.5" transform="rotate(77.1 1.8 8.0)"/><ellipse cx="-1.8" cy="8.0" rx="3.6" ry="2.5" transform="rotate(102.9 -1.8 8.0)"/><ellipse cx="-5.1" cy="6.4" rx="3.6" ry="2.5" transform="rotate(128.6 -5.1 6.4)"/><ellipse cx="-7.4" cy="3.6" rx="3.6" ry="2.5" transform="rotate(154.3 -7.4 3.6)"/><ellipse cx="-8.2" cy="0.0" rx="3.6" ry="2.5" transform="rotate(180.0 -8.2 0.0)"/><ellipse cx="-7.4" cy="-3.6" rx="3.6" ry="2.5" transform="rotate(205.7 -7.4 -3.6)"/><ellipse cx="-5.1" cy="-6.4" rx="3.6" ry="2.5" transform="rotate(231.4 -5.1 -6.4)"/><ellipse cx="-1.8" cy="-8.0" rx="3.6" ry="2.5" transform="rotate(257.1 -1.8 -8.0)"/><ellipse cx="1.8" cy="-8.0" rx="3.6" ry="2.5" transform="rotate(282.9 1.8 -8.0)"/><ellipse cx="5.1" cy="-6.4" rx="3.6" ry="2.5" transform="rotate(308.6 5.1 -6.4)"/><ellipse cx="7.4" cy="-3.6" rx="3.6" ry="2.5" transform="rotate(334.3 7.4 -3.6)"/></g><g fill="#ffa53d" stroke="#b24c06" stroke-width=".5"><ellipse cx="4.4" cy="1.4" rx="2.8" ry="2" transform="rotate(18.0 4.4 1.4)"/><ellipse cx="2.7" cy="3.7" rx="2.8" ry="2" transform="rotate(54.0 2.7 3.7)"/><ellipse cx="0.0" cy="4.6" rx="2.8" ry="2" transform="rotate(90.0 0.0 4.6)"/><ellipse cx="-2.7" cy="3.7" rx="2.8" ry="2" transform="rotate(126.0 -2.7 3.7)"/><ellipse cx="-4.4" cy="1.4" rx="2.8" ry="2" transform="rotate(162.0 -4.4 1.4)"/><ellipse cx="-4.4" cy="-1.4" rx="2.8" ry="2" transform="rotate(198.0 -4.4 -1.4)"/><ellipse cx="-2.7" cy="-3.7" rx="2.8" ry="2" transform="rotate(234.0 -2.7 -3.7)"/><ellipse cx="-0.0" cy="-4.6" rx="2.8" ry="2" transform="rotate(270.0 -0.0 -4.6)"/><ellipse cx="2.7" cy="-3.7" rx="2.8" ry="2" transform="rotate(306.0 2.7 -3.7)"/><ellipse cx="4.4" cy="-1.4" rx="2.8" ry="2" transform="rotate(342.0 4.4 -1.4)"/></g><circle r="2.2" fill="#b24c06"/></g><g id="my"><circle r="11.5" fill="url(#gmy)"/><g fill="#fbc21a" stroke="#b98100" stroke-width=".5"><ellipse cx="8.2" cy="0.0" rx="3.6" ry="2.5" transform="rotate(0.0 8.2 0.0)"/><ellipse cx="7.4" cy="3.6" rx="3.6" ry="2.5" transform="rotate(25.7 7.4 3.6)"/><ellipse cx="5.1" cy="6.4" rx="3.6" ry="2.5" transform="rotate(51.4 5.1 6.4)"/><ellipse cx="1.8" cy="8.0" rx="3.6" ry="2.5" transform="rotate(77.1 1.8 8.0)"/><ellipse cx="-1.8" cy="8.0" rx="3.6" ry="2.5" transform="rotate(102.9 -1.8 8.0)"/><ellipse cx="-5.1" cy="6.4" rx="3.6" ry="2.5" transform="rotate(128.6 -5.1 6.4)"/><ellipse cx="-7.4" cy="3.6" rx="3.6" ry="2.5" transform="rotate(154.3 -7.4 3.6)"/><ellipse cx="-8.2" cy="0.0" rx="3.6" ry="2.5" transform="rotate(180.0 -8.2 0.0)"/><ellipse cx="-7.4" cy="-3.6" rx="3.6" ry="2.5" transform="rotate(205.7 -7.4 -3.6)"/><ellipse cx="-5.1" cy="-6.4" rx="3.6" ry="2.5" transform="rotate(231.4 -5.1 -6.4)"/><ellipse cx="-1.8" cy="-8.0" rx="3.6" ry="2.5" transform="rotate(257.1 -1.8 -8.0)"/><ellipse cx="1.8" cy="-8.0" rx="3.6" ry="2.5" transform="rotate(282.9 1.8 -8.0)"/><ellipse cx="5.1" cy="-6.4" rx="3.6" ry="2.5" transform="rotate(308.6 5.1 -6.4)"/><ellipse cx="7.4" cy="-3.6" rx="3.6" ry="2.5" transform="rotate(334.3 7.4 -3.6)"/></g><g fill="#ffd54f" stroke="#b98100" stroke-width=".5"><ellipse cx="4.4" cy="1.4" rx="2.8" ry="2" transform="rotate(18.0 4.4 1.4)"/><ellipse cx="2.7" cy="3.7" rx="2.8" ry="2" transform="rotate(54.0 2.7 3.7)"/><ellipse cx="0.0" cy="4.6" rx="2.8" ry="2" transform="rotate(90.0 0.0 4.6)"/><ellipse cx="-2.7" cy="3.7" rx="2.8" ry="2" transform="rotate(126.0 -2.7 3.7)"/><ellipse cx="-4.4" cy="1.4" rx="2.8" ry="2" transform="rotate(162.0 -4.4 1.4)"/><ellipse cx="-4.4" cy="-1.4" rx="2.8" ry="2" transform="rotate(198.0 -4.4 -1.4)"/><ellipse cx="-2.7" cy="-3.7" rx="2.8" ry="2" transform="rotate(234.0 -2.7 -3.7)"/><ellipse cx="-0.0" cy="-4.6" rx="2.8" ry="2" transform="rotate(270.0 -0.0 -4.6)"/><ellipse cx="2.7" cy="-3.7" rx="2.8" ry="2" transform="rotate(306.0 2.7 -3.7)"/><ellipse cx="4.4" cy="-1.4" rx="2.8" ry="2" transform="rotate(342.0 4.4 -1.4)"/></g><circle r="2.2" fill="#b98100"/></g><g id="rr"><circle r="8.5" fill="#9e0f28"/><circle r="6.5" fill="#c4193a"/><path d="M-4 1a4.5 4.5 0 0 1 8-3M-2.5 3a3 3 0 0 0 5-2.5M-1 -1.5a1.8 1.8 0 1 1 2 1.5" fill="none" stroke="#7a0a1d" stroke-width="1.1" stroke-linecap="round"/></g><g id="lf"><path d="M4 0q10-7 22 0q-12 7-22 0z" fill="#2e7d32"/><path d="M4 0h20" stroke="#1b5e20" stroke-width=".8"/></g></defs>
+        <circle cx="200" cy="160" r="118.5" fill="none" stroke="#fff6d8" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0 7.2" opacity=".9"/>
+<use href="#lf" transform="translate(87.9 100.4) rotate(-160.8)"/>
+<use href="#lf" transform="translate(77.0 128.4) rotate(-183.1)"/>
+<use href="#lf" transform="translate(73.0 158.2) rotate(-171.7)"/>
+<use href="#lf" transform="translate(75.3 188.3) rotate(145.8)"/>
+<use href="#lf" transform="translate(82.9 217.6) rotate(155.6)"/>
+<use href="#lf" transform="translate(96.0 244.8) rotate(134.1)"/>
+<use href="#lf" transform="translate(114.9 268.9) rotate(105.9)"/>
+<use href="#lf" transform="translate(138.8 287.7) rotate(116.0)"/>
+<use href="#lf" transform="translate(166.6 300.1) rotate(80.3)"/>
+<use href="#lf" transform="translate(196.5 304.9) rotate(88.1)"/>
+<use href="#lf" transform="translate(226.6 301.9) rotate(57.9)"/>
+<use href="#lf" transform="translate(254.7 291.4) rotate(46.9)"/>
+<use href="#lf" transform="translate(279.8 273.9) rotate(51.2)"/>
+<use href="#lf" transform="translate(299.8 251.2) rotate(58.7)"/>
+<use href="#lf" transform="translate(314.4 224.5) rotate(10.6)"/>
+<use href="#lf" transform="translate(323.4 195.4) rotate(2.2)"/>
+<use href="#lf" transform="translate(326.9 165.3) rotate(8.8)"/>
+<use href="#lf" transform="translate(324.6 135.3) rotate(11.2)"/>
+<use href="#lf" transform="translate(315.3 106.7) rotate(-20.9)"/>
+<path d="M200.0 305.0V367.0" stroke="#7d560e" stroke-width="1.2"/>
+<use href="#mo" transform="translate(200.0 319.0) scale(0.85)"/>
+<use href="#my" transform="translate(200.0 333.0) scale(0.77)"/>
+<use href="#mo" transform="translate(200.0 347.0) scale(0.69)"/>
+<path d="M195.0 365.0q5 -6 10 0l-2 16h-6z" fill="#b8860b"/><path d="M196.0 379.0h8" stroke="#7d560e" stroke-width="1.5"/>
+<use href="#mo" transform="translate(87.9 100.4) rotate(203) scale(0.95)"/>
+<use href="#my" transform="translate(81.6 114.1) rotate(113) scale(0.95)"/>
+<use href="#mo" transform="translate(77.0 128.4) rotate(68) scale(0.97)"/>
+<use href="#rr" transform="translate(74.1 143.2) rotate(73) scale(1.00)"/>
+<use href="#mo" transform="translate(73.0 158.2) rotate(292) scale(0.98)"/>
+<use href="#my" transform="translate(73.5 173.3) rotate(349) scale(0.96)"/>
+<use href="#mo" transform="translate(75.3 188.3) rotate(297) scale(1.01)"/>
+<use href="#my" transform="translate(78.5 203.3) rotate(96) scale(0.98)"/>
+<use href="#mo" transform="translate(82.9 217.6) rotate(280) scale(1.03)"/>
+<use href="#my" transform="translate(88.8 231.7) rotate(288) scale(0.95)"/>
+<use href="#rr" transform="translate(96.0 244.8) rotate(105) scale(1.00)"/>
+<use href="#my" transform="translate(104.7 257.3) rotate(272) scale(0.99)"/>
+<use href="#mo" transform="translate(114.9 268.9) rotate(160) scale(1.00)"/>
+<use href="#my" transform="translate(126.2 279.0) rotate(232) scale(0.98)"/>
+<use href="#mo" transform="translate(138.8 287.7) rotate(127) scale(1.04)"/>
+<use href="#my" transform="translate(152.5 294.9) rotate(357) scale(1.03)"/>
+<use href="#mo" transform="translate(166.6 300.1) rotate(41) scale(1.01)"/>
+<use href="#rr" transform="translate(181.4 303.5) rotate(268) scale(1.00)"/>
+<use href="#mo" transform="translate(196.5 304.9) rotate(175) scale(1.03)"/>
+<use href="#my" transform="translate(211.6 304.4) rotate(147) scale(1.01)"/>
+<use href="#mo" transform="translate(226.6 301.9) rotate(37) scale(0.95)"/>
+<use href="#my" transform="translate(241.0 297.5) rotate(214) scale(0.96)"/>
+<use href="#mo" transform="translate(254.7 291.4) rotate(175) scale(0.96)"/>
+<use href="#my" transform="translate(267.8 283.4) rotate(250) scale(0.99)"/>
+<use href="#rr" transform="translate(279.8 273.9) rotate(342) scale(0.95)"/>
+<use href="#my" transform="translate(290.4 263.2) rotate(285) scale(1.01)"/>
+<use href="#mo" transform="translate(299.8 251.2) rotate(160) scale(0.98)"/>
+<use href="#my" transform="translate(307.8 238.3) rotate(179) scale(1.01)"/>
+<use href="#mo" transform="translate(314.4 224.5) rotate(296) scale(1.04)"/>
+<use href="#my" transform="translate(319.6 210.3) rotate(35) scale(1.04)"/>
+<use href="#mo" transform="translate(323.4 195.4) rotate(138) scale(1.00)"/>
+<use href="#rr" transform="translate(325.8 180.4) rotate(340) scale(0.95)"/>
+<use href="#mo" transform="translate(326.9 165.3) rotate(359) scale(0.98)"/>
+<use href="#my" transform="translate(326.6 150.3) rotate(295) scale(1.06)"/>
+<use href="#mo" transform="translate(324.6 135.3) rotate(228) scale(0.97)"/>
+<use href="#my" transform="translate(320.8 120.8) rotate(197) scale(1.05)"/>
+<use href="#mo" transform="translate(315.3 106.7) rotate(177) scale(0.94)"/>
+      </svg>
+    </div>
+
+    <p class="-mt-1 flex items-center justify-center gap-3 text-lg font-bold text-gold-800 sm:text-xl">
+      <svg aria-hidden="true" class="h-3.5 w-6 text-gold-700"><use href="#lotus"/></svg>
       शोक संदेश
-      <span aria-hidden="true" class="h-px w-10 bg-gradient-to-l from-transparent to-gold-700"></span>
+      <svg aria-hidden="true" class="h-3.5 w-6 text-gold-700"><use href="#lotus"/></svg>
     </p>
 
-    <h1 class="mt-2 font-display text-[2.1rem] leading-tight text-maroon-800 sm:text-5xl">
+    <h1 class="mt-2 font-display leading-tight">
       <span class="block text-xl text-maroon-700 sm:text-2xl">स्व. श्री</span>
-      पूर्णानंद जी दुबे
+      <span class="text-gilded block text-[2.4rem] sm:text-6xl">पूर्णानंद जी दुबे</span>
     </h1>
 
-    <p class="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-300 bg-cream-50/80 px-4 py-1.5 text-[0.95rem] text-maroon-900 shadow-sm">
+    <p class="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/60 bg-cream-50 px-4 py-1.5 text-[0.95rem] text-maroon-900 shadow-[0_2px_8px_-2px_rgb(154_107_18/0.35)]">
       <span class="font-semibold text-gold-800">स्वर्गवास</span>
       <span aria-hidden="true" class="size-1 rounded-full bg-gold-500"></span>
       <time datetime="2026-09-26">26 सितंबर 2026, शनिवार</time>
@@ -63,25 +175,27 @@
       <strong class="font-display text-[1.2rem] font-normal whitespace-nowrap text-maroon-800">श्री पूर्णानंद जी दुबे</strong>
       का स्वर्गवास दिनांक <strong class="font-bold whitespace-nowrap">26/09/2026, शनिवार</strong> को हो गया है।
     </p>
-    <p class="mt-4 border-t border-dashed border-gold-300 pt-4 text-[1.05rem] font-medium text-maroon-800">
+    <p class="mt-4 border-t border-gold-300 pt-4 text-[1.05rem] font-semibold text-maroon-800">
       उनकी आत्मशांति हेतु उत्तरकार्य निम्नानुसार रखा गया है।
     </p>
   </section>
 
   <!-- ───────── Programme ───────── -->
   <section aria-labelledby="karyakram">
-    <h2 id="karyakram" class="mb-4 flex items-center gap-3 text-center font-display text-2xl text-maroon-800">
-      <span aria-hidden="true" class="h-px flex-1 bg-gradient-to-r from-transparent to-gold-700"></span>
-      उत्तरकार्य कार्यक्रम
-      <span aria-hidden="true" class="h-px flex-1 bg-gradient-to-l from-transparent to-gold-700"></span>
+    <h2 id="karyakram" class="section-title">
+      <span aria-hidden="true" class="rule"></span>
+      <svg aria-hidden="true" class="h-3.5 w-6 shrink-0 text-gold-700"><use href="#lotus"/></svg>
+      <span>उत्तरकार्य कार्यक्रम</span>
+      <svg aria-hidden="true" class="h-3.5 w-6 shrink-0 text-gold-700"><use href="#lotus"/></svg>
+      <span aria-hidden="true" class="rule rule-r"></span>
     </h2>
 
     <ol class="flex flex-col gap-3">
-      <li class="panel flex items-stretch gap-4 p-3 pr-4">
-        <time datetime="2026-10-05" class="flex w-18 shrink-0 flex-col items-center justify-center rounded-xl bg-maroon-800 py-2 text-cream-50 shadow-inner">
+      <li class="panel event">
+        <time datetime="2026-10-05" class="date-tile">
           <span class="text-3xl leading-none font-extrabold">05</span>
           <span class="mt-1 text-sm leading-none font-semibold text-gold-300">अक्टूबर</span>
-          <span class="mt-1 text-xs leading-none opacity-80">सोमवार</span>
+          <span class="mt-1 text-xs leading-none opacity-85">सोमवार</span>
         </time>
         <div class="flex min-w-0 flex-col justify-center py-1">
           <h3 class="text-xl font-extrabold text-maroon-800">दशाकर्म</h3>
@@ -90,11 +204,11 @@
         </div>
       </li>
 
-      <li class="panel flex items-stretch gap-4 p-3 pr-4">
-        <time datetime="2026-10-09" class="flex w-18 shrink-0 flex-col items-center justify-center rounded-xl bg-maroon-800 py-2 text-cream-50 shadow-inner">
+      <li class="panel event">
+        <time datetime="2026-10-09" class="date-tile">
           <span class="text-3xl leading-none font-extrabold">09</span>
           <span class="mt-1 text-sm leading-none font-semibold text-gold-300">अक्टूबर</span>
-          <span class="mt-1 text-xs leading-none opacity-80">शुक्रवार</span>
+          <span class="mt-1 text-xs leading-none opacity-85">शुक्रवार</span>
         </time>
         <div class="flex min-w-0 flex-col justify-center py-1">
           <h3 class="text-xl font-extrabold text-maroon-800">पगड़ी रस्म</h3>
@@ -107,11 +221,11 @@
         </div>
       </li>
 
-      <li class="panel flex items-stretch gap-4 p-3 pr-4">
-        <time datetime="2026-10-09T13:00" class="flex w-18 shrink-0 flex-col items-center justify-center rounded-xl bg-maroon-800 py-2 text-cream-50 shadow-inner">
+      <li class="panel event">
+        <time datetime="2026-10-09T13:00" class="date-tile">
           <span class="text-3xl leading-none font-extrabold">09</span>
           <span class="mt-1 text-sm leading-none font-semibold text-gold-300">अक्टूबर</span>
-          <span class="mt-1 text-xs leading-none opacity-80">शुक्रवार</span>
+          <span class="mt-1 text-xs leading-none opacity-85">शुक्रवार</span>
         </time>
         <div class="flex min-w-0 flex-col justify-center py-1">
           <h3 class="text-xl font-extrabold text-maroon-800">ब्रह्मभोज</h3>
@@ -143,7 +257,7 @@
       </a>
     </div>
     <a href="https://maps.app.goo.gl/ebUoVSo2rtf3pZEi9" target="_blank" rel="noopener"
-       class="flex min-h-14 items-center justify-center gap-2.5 bg-maroon-800 px-4 text-lg font-bold text-cream-50 transition hover:bg-maroon-700 focus-visible:outline-3 focus-visible:-outline-offset-3 focus-visible:outline-gold-300 active:bg-maroon-900">
+       class="btn-maroon flex min-h-14 items-center justify-center gap-2.5 px-4 text-lg font-bold">
       <svg aria-hidden="true" viewBox="0 0 24 24" class="size-5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
       गूगल मैप पर रास्ता देखें
     </a>
@@ -151,18 +265,19 @@
 
   <!-- ───────── Family & contacts ───────── -->
   <section aria-labelledby="shokakul" class="text-center">
-    <h2 id="shokakul" class="text-lg">
-      <span class="font-bold text-gold-800">शोकाकुल :</span>
-      <span class="font-display text-2xl text-maroon-800">समस्त दुबे परिवार</span>
+    <h2 id="shokakul" class="section-title">
+      <span aria-hidden="true" class="rule"></span>
+      <svg aria-hidden="true" class="h-3.5 w-6 shrink-0 text-gold-700"><use href="#lotus"/></svg>
+      <span>शोकाकुल</span>
+      <svg aria-hidden="true" class="h-3.5 w-6 shrink-0 text-gold-700"><use href="#lotus"/></svg>
+      <span aria-hidden="true" class="rule rule-r"></span>
     </h2>
+    <p class="-mt-2 mb-4 font-display text-2xl text-maroon-800">समस्त दुबे परिवार</p>
 
-    <ul class="mt-4 grid grid-cols-1 gap-3 min-[400px]:grid-cols-2">
+    <ul class="grid grid-cols-1 gap-3 min-[400px]:grid-cols-2">
       <li>
-        <a href="tel:+919424597307"
-           class="group panel flex items-center gap-3 p-3 text-left transition hover:border-gold-500 focus-visible:outline-3 focus-visible:outline-gold-500 active:scale-[0.99]">
-          <span class="grid size-11 shrink-0 place-items-center rounded-full bg-maroon-800 text-cream-50 transition group-hover:bg-maroon-700">
-            <svg aria-hidden="true" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-          </span>
+        <a href="tel:+919424597307" class="group panel contact">
+          <span class="call-dot"><svg aria-hidden="true" class="size-5"><use href="#phone"/></svg></span>
           <span class="min-w-0">
             <span class="block text-lg leading-tight font-bold text-maroon-800">ओमप्रकाश दुबे</span>
             <span class="block tracking-wide tabular-nums text-maroon-900/80">94245 97307</span>
@@ -170,11 +285,8 @@
         </a>
       </li>
       <li>
-        <a href="tel:+918962132378"
-           class="group panel flex items-center gap-3 p-3 text-left transition hover:border-gold-500 focus-visible:outline-3 focus-visible:outline-gold-500 active:scale-[0.99]">
-          <span class="grid size-11 shrink-0 place-items-center rounded-full bg-maroon-800 text-cream-50 transition group-hover:bg-maroon-700">
-            <svg aria-hidden="true" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-          </span>
+        <a href="tel:+918962132378" class="group panel contact">
+          <span class="call-dot"><svg aria-hidden="true" class="size-5"><use href="#phone"/></svg></span>
           <span class="min-w-0">
             <span class="block text-lg leading-tight font-bold text-maroon-800">निखिल दुबे</span>
             <span class="block tracking-wide tabular-nums text-maroon-900/80">89621 32378</span>
@@ -182,20 +294,28 @@
         </a>
       </li>
     </ul>
-
-    <button type="button" id="share"
-            class="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-maroon-800 px-6 font-bold text-maroon-800 transition hover:bg-maroon-800 hover:text-cream-50 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-500">
-      <svg aria-hidden="true" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
-      यह संदेश साझा करें
-    </button>
   </section>
 
+  <!-- ───────── Shloka ───────── -->
+  <figure class="shloka relative overflow-hidden rounded-2xl px-6 py-8 text-center text-gold-100 sm:px-10">
+    <svg aria-hidden="true" class="absolute -top-20 -right-20 size-56 text-gold-300/15"><use href="#mandala"/></svg>
+    <svg aria-hidden="true" class="absolute -bottom-20 -left-20 size-56 text-gold-300/15"><use href="#mandala"/></svg>
+    <svg aria-hidden="true" class="relative mx-auto mb-3 h-5 w-9 text-gold-300"><use href="#lotus"/></svg>
+    <blockquote lang="sa" class="relative font-sanskrit text-[1.15rem] leading-[1.9] sm:text-[1.3rem]">
+      वासांसि जीर्णानि यथा विहाय<br>
+      नवानि गृह्णाति नरोऽपराणि ।<br>
+      तथा शरीराणि विहाय जीर्णा-<br>
+      न्यन्यानि संयाति नवानि देही ॥
+    </blockquote>
+    <figcaption class="relative mt-4 text-sm tracking-wide text-gold-300">— श्रीमद्भगवद्गीता 2.22</figcaption>
+  </figure>
+
   <!-- ───────── Closing ───────── -->
-  <footer class="flex flex-col items-center pt-2 text-center">
-    <svg aria-hidden="true" viewBox="0 0 64 56" class="h-14 w-16">
+  <footer class="flex flex-col items-center text-center">
+    <svg aria-hidden="true" viewBox="0 0 64 56" class="h-16 w-18">
       <defs>
         <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/>
+          <stop offset="0" stop-color="#ffd27a" stop-opacity=".8"/>
           <stop offset="1" stop-color="#ffd27a" stop-opacity="0"/>
         </radialGradient>
         <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
@@ -213,11 +333,21 @@
       <path d="M8 36h48c-2 9-12 15-24 15S10 45 8 36z" fill="url(#bowl)"/>
       <path d="M8 36h48" stroke="#7d560e" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <p class="mt-2 font-display text-xl text-maroon-800">ॐ शान्तिः शान्तिः शान्तिः</p>
-    <p class="mt-1 text-sm text-maroon-900/70">ईश्वर दिवंगत आत्मा को अपने श्रीचरणों में स्थान दें।</p>
+    <p class="mt-2 font-display text-2xl text-maroon-800">ॐ शान्तिः शान्तिः शान्तिः</p>
+    <p class="mt-1 text-[0.95rem] text-maroon-900/75">ईश्वर दिवंगत आत्मा को अपने श्रीचरणों में स्थान दें।</p>
+
+    <button type="button" id="share"
+            class="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-maroon-800 bg-cream-50/70 px-6 font-bold text-maroon-800 transition hover:bg-maroon-800 hover:text-cream-50 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-500">
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+      यह संदेश साझा करें
+    </button>
   </footer>
 
 </main>
+</div>
+</div>
+
+<div id="petals" aria-hidden="true" class="pointer-events-none fixed inset-0 z-10 overflow-hidden"></div>
 
 <script>
 document.getElementById('share').addEventListener('click', async () => {
@@ -229,6 +359,22 @@ document.getElementById('share').addEventListener('click', async () => {
     window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + url), '_blank', 'noopener');
   }
 });
+
+// A few marigold petals drifting down, skipped for people who prefer reduced motion
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const box = document.getElementById('petals');
+  const colors = ['#f28a1c', '#fbb917', '#e8730c', '#ffc93c', '#c4193a'];
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('span');
+    const s = 8 + Math.random() * 7;
+    p.className = 'petal';
+    p.style.cssText =
+      `left:${Math.random() * 100}%;width:${s}px;height:${s * 0.7}px;background:${colors[i % colors.length]};` +
+      `--dx:${(Math.random() * 30 - 15).toFixed(1)}vw;--rot:${Math.round(Math.random() * 720 - 360)}deg;` +
+      `animation-duration:${(14 + Math.random() * 12).toFixed(1)}s;animation-delay:-${(Math.random() * 26).toFixed(1)}s`;
+    box.appendChild(p);
+  }
+}
 </script>
 </body>
 </html>
