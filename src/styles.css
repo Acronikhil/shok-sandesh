@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@source "../index.html";
+
+@theme {
+  --font-sans: "Mukta", "Noto Sans Devanagari", "Mangal", sans-serif;
+  --font-display: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif;
+
+  --color-maroon-950: #2b0c04;
+  --color-maroon-900: #3d1206;
+  --color-maroon-800: #5a1608;
+  --color-maroon-700: #7a2410;
+
+  --color-gold-800: #7d560e;
+  --color-gold-700: #9a6b12;
+  --color-gold-500: #c9974a;
+  --color-gold-300: #e3c787;
+  --color-gold-100: #f3e6c3;
+
+  --color-cream-50: #fffdf6;
+  --color-cream-100: #fbf6e6;
+  --color-cream-200: #f7efd6;
+
+  --animate-flicker: flicker 2.6s ease-in-out infinite;
+
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-1deg); opacity: 1; }
+    25% { transform: scale(1.04, 0.97) rotate(1.5deg); opacity: 0.94; }
+    50% { transform: scale(0.97, 1.05) rotate(-1.5deg); opacity: 1; }
+    75% { transform: scale(1.02, 0.98) rotate(1deg); opacity: 0.96; }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Soft paper panel used for every section */
+  .panel {
+    @apply rounded-2xl border border-gold-300/70 bg-cream-50/90 shadow-[0_1px_0_#fff_inset,0_10px_30px_-12px_rgb(90_22_8/0.25)];
+  }
+
+  /* Portrait: fade the painted card background into the page */
+  .hero-fade {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+      linear-gradient(to bottom, transparent, #000 8%, #000 80%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+      linear-gradient(to bottom, transparent, #000 8%, #000 80%, transparent);
+    mask-composite: intersect;
+  }
+}
