@@ -24,8 +24,8 @@ Always commit `assets/styles.css` after changing classes in `index.html`; GitHub
 
 ## Hosting
 
-Served by GitHub Pages (branch `main`, folder `/`) at **https://shok.dubeynikhil.in/**.
+Served by GitHub Pages (branch `main`, folder `/`) at **https://shok.message.dubeynikhil.in/**.
 
 - `CNAME` holds the custom domain.
-- DNS (Hostinger, `dubeynikhil.in`): `CNAME` record `shok` → `acronikhil.github.io`.
+- DNS (Hostinger, `dubeynikhil.in`): `CNAME` record `shok.message` → `acronikhil.github.io`.
 - The WhatsApp preview (`og:image`) uses the full custom-domain URL.
