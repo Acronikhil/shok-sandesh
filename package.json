@@ -1,0 +1,22 @@
+{
+  "name": "shok-sandesh",
+  "version": "1.0.0",
+  "description": "शोक संदेश – स्व. श्री पूर्णानंद जी दुबे",
+  "scripts": {
+    "build": "tailwindcss -i src/styles.css -o assets/styles.css --minify",
+    "dev": "tailwindcss -i src/styles.css -o assets/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Acronikhil/shok-sandesh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Acronikhil/shok-sandesh/issues"
+  },
+  "homepage": "https://github.com/Acronikhil/shok-sandesh#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "private": true
+}
