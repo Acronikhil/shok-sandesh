@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../index.html";
+@source "../send.html";
 
 @theme {
   --font-sans: "Mukta", "Noto Sans Devanagari", "Mangal", sans-serif;
@@ -156,5 +157,26 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     will-change: transform;
+  }
+
+  /* ─── send.html ─── */
+  .chip {
+    @apply cursor-pointer rounded-full border border-gold-500/70 bg-cream-50 px-4 py-1.5 font-semibold text-maroon-800 transition select-none hover:bg-gold-100;
+  }
+  .chip:has(input:checked) {
+    @apply border-maroon-800 bg-maroon-800 text-cream-50 shadow-[inset_0_0_0_1px_#e3c78799];
+  }
+  .chip:has(input:focus-visible) {
+    @apply outline-3 outline-offset-2 outline-gold-500;
+  }
+  .field {
+    @apply block w-full rounded-xl border border-gold-500/70 bg-white px-4 py-3 text-maroon-900 shadow-[inset_0_1px_2px_rgb(90_22_8/0.08)] placeholder:font-sans placeholder:text-base placeholder:text-maroon-900/35 focus:border-maroon-800 focus:ring-3 focus:ring-gold-300/60 focus:outline-none;
+  }
+  .btn-wa {
+    background: linear-gradient(180deg, #25b55a, #128c4a);
+    @apply shadow-[0_8px_20px_-8px_rgb(18_140_74/0.7)] transition hover:brightness-105 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-500 active:scale-[0.99];
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-maroon-800 bg-cream-50/70 px-3 text-[0.95rem] font-bold text-maroon-800 transition hover:bg-maroon-800 hover:text-cream-50 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-500;
   }
 }
