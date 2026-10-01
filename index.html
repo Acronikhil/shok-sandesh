@@ -165,6 +165,11 @@
 
   <!-- ───────── Announcement ───────── -->
   <section aria-label="सूचना" class="panel px-5 py-6 text-center sm:px-8">
+    <!-- Filled in from the personalised link (?n=…), see send.html -->
+    <div id="recipient" hidden class="mb-5 border-b border-gold-300 pb-4">
+      <p id="r-prefix" class="text-[1.05rem] font-semibold text-gold-800">श्रीमान,</p>
+      <p id="r-name" class="font-display text-[1.75rem] leading-snug break-words text-maroon-800 sm:text-3xl"></p>
+    </div>
     <p class="text-[1.075rem] leading-[1.85] text-pretty">
       अत्यंत दुःख के साथ सूचित करना पड़ रहा है कि
       स्व. श्री जानकी प्रसाद जी दुबे के पौत्र,
@@ -350,6 +355,28 @@
 <div id="petals" aria-hidden="true" class="pointer-events-none fixed inset-0 z-10 overflow-hidden"></div>
 
 <script>
+// Personalised greeting: ?n=<base64url name>&p=<honorific index>, or plain ?to=<name>
+(() => {
+  const q = new URLSearchParams(location.search);
+  let name = '';
+  try {
+    const n = q.get('n');
+    if (n) {
+      const bin = atob(n.replace(/-/g, '+').replace(/_/g, '/'));
+      name = new TextDecoder('utf-8', { fatal: true }).decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
+    }
+  } catch (e) {}
+  if (!name) name = q.get('to') || '';
+  name = name.replace(/\s+/g, ' ').trim().slice(0, 80);
+  if (!name) return;
+  const prefixes = ['श्रीमान,', 'श्रीमती,', 'आदरणीय', 'प्रिय', ''];
+  const prefix = prefixes[Number(q.get('p'))] ?? prefixes[0];
+  document.getElementById('r-prefix').textContent = prefix;
+  document.getElementById('r-prefix').hidden = !prefix;
+  document.getElementById('r-name').textContent = name;
+  document.getElementById('recipient').hidden = false;
+})();
+
 document.getElementById('share').addEventListener('click', async () => {
   const url = 'https://shok.message.dubeynikhil.in/';
   const text = 'शोक संदेश – स्व. श्री पूर्णानंद जी दुबे\nदशाकर्म : 05/10/2026 • पगड़ी रस्म एवं ब्रह्मभोज : 09/10/2026\nश्री गौड़ परिसर, उपाध्याय नगर, देवास';
