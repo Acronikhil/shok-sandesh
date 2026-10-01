@@ -134,9 +134,9 @@ function messageFor(name, p) {
 
 अत्यंत दुःख के साथ सूचित करना पड़ रहा है कि श्री पूर्णानंद जी दुबे का स्वर्गवास दिनांक 26/09/2026, शनिवार को हो गया है।
 
-🪔 दशाकर्म : 05/10/2026, सोमवार
-🪔 पगड़ी रस्म एवं ब्रह्मभोज : 09/10/2026, शुक्रवार (दोपहर 1 बजे से)
-📍 श्री गौड़ परिसर, उपाध्याय नगर, देवास
+• दशाकर्म : 05/10/2026, सोमवार
+• पगड़ी रस्म एवं ब्रह्मभोज : 09/10/2026, शुक्रवार (दोपहर 1 बजे से)
+• स्थान : श्री गौड़ परिसर, उपाध्याय नगर, देवास
 
 शोक संदेश देखें :
 ${linkFor(name, p)}
@@ -223,7 +223,8 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const c = current(); if (!c) return;
   const num = waNumber(c.phone);
-  const url = (num ? 'https://wa.me/' + num : 'https://wa.me/') + '?text=' + encodeURIComponent(messageFor(c.name, c.p));
+  // Plain-text bullets only: wa.me's redirect turns newer emoji into "?" when a number is given.
+  const url = 'https://api.whatsapp.com/send?' + (num ? 'phone=' + num + '&' : '') + 'text=' + encodeURIComponent(messageFor(c.name, c.p));
   window.open(url, '_blank', 'noopener');
   remember(c.name, c.p, c.phone);
   resetForNext();
