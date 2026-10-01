@@ -2,6 +2,7 @@
 
 @source "../index.html";
 @source "../send.html";
+@source "../generator.html";
 
 @theme {
   --font-sans: "Mukta", "Noto Sans Devanagari", "Mangal", sans-serif;

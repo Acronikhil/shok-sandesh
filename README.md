@@ -6,6 +6,7 @@ Digital condolence card (शोक संदेश) with a tappable Google Maps 
 
 - `index.html` – the page (styled with Tailwind CSS utility classes)
 - `send.html` – sender page: type a name, get a personalised link and send it on WhatsApp
+- `generator.html` – makes the printed-style card as a PNG with the recipient's name (save to gallery / share)
 - `src/styles.css` – Tailwind source: theme colours, fonts, shared styles
 - `assets/styles.css` – compiled CSS served by GitHub Pages (generated, but committed)
 - `assets/papa.webp` – photograph (800×800, optimised from `Papa.png`)
@@ -22,6 +23,12 @@ Open **https://shok.message.dubeynikhil.in/send.html**, choose the salutation, t
 The link carries the name as `?n=<base64url of the UTF-8 name>` plus `&p=<n>` for the salutation
 (0 श्रीमान, 1 श्रीमती, 2 आदरणीय, 3 प्रिय, 4 none). A plain `?to=Name` also works.
 The page shows it at the top of the announcement, like the name line on a printed card.
+
+## Card image generator
+
+Open **https://shok.message.dubeynikhil.in/generator.html**, pick the salutation, type the name and tap
+*गैलरी में सेव करें* or *WhatsApp / शेयर करें*. The card is drawn in the browser (canvas, Hind font)
+at 2560×1800, so nothing is uploaded anywhere. `?name=…` pre-fills the name.
 
 ## Editing
 
