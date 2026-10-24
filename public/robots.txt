@@ -1,0 +1,9 @@
+# Only the home pages (/ and /en) are meant for search engines.
+# Family cards (/s/…) are NOT blocked here on purpose: crawlers must be able to fetch them to see
+# their "noindex" tag, otherwise a linked card could still be listed by URL.
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /lang
+
+Sitemap: https://shoksandesh.dubeynikhil.in/sitemap.xml

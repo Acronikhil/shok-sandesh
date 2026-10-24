@@ -45,7 +45,7 @@ export const LOCALE = {
     programme: 'कार्यक्रम',
     mobile: 'मो.',
     viewLink: 'शोक संदेश देखें :',
-    makeOwn: 'अपने परिजन के लिए ऐसा शोक संदेश निःशुल्क बनाएँ →',
+    makeOwn: 'अपने परिजन के लिए ऐसा शोक संदेश निःशुल्क बनाएँ →',
     noticeLabel: 'सूचना',
   },
   en: {
@@ -77,7 +77,7 @@ export const LOCALE = {
     programme: 'Programme',
     mobile: 'Mob.',
     viewLink: 'View the condolence message:',
-    makeOwn: 'Create a condolence message like this for your family, free →',
+    makeOwn: 'Create a condolence message like this for your family, free →',
     noticeLabel: 'Announcement',
   },
 };

@@ -1,6 +1,6 @@
 import qrcode from 'qrcode-generator';
 import { html, raw, esc, jsonScript } from '../html.js';
-import { page } from './layout.js';
+import { page, siteFooter } from './layout.js';
 import { SYMBOLS, GARLAND, DIYA } from './ornaments.js';
 import {
   SHLOKAS, LOCALE, pick, announcement, bodyName, fullName, dmy, dateAndDay, weekday, monthName, longDate, isIsoDate,
@@ -259,6 +259,8 @@ ${demo ? html`<p lang="${ui}" class="mb-2 rounded-xl bg-maroon-800 px-4 py-2 tex
 </main>
 </div>
 </div>
+
+${siteFooter(d.lang)}
 
 <div id="petals" aria-hidden="true" class="pointer-events-none fixed inset-0 z-10 overflow-hidden"></div>
 <script type="application/json" id="share-data">${jsonScript(share)}</script>`;

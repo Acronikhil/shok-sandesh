@@ -20,11 +20,66 @@ const templateCards = (lang, href, plus = '') => html`
     </a></li>`)}
   </ul>`;
 
-export function landingPage({ user, lang }) {
+const PORTFOLIO = 'https://www.dubeynikhil.in/';
+
+// Questions people actually search for; shown on the page and sent to Google as FAQ data.
+const FAQ = {
+  hi: [
+    ['शोक संदेश क्या होता है?', 'शोक संदेश वह सूचना है जिससे परिवार किसी परिजन के स्वर्गवास की ख़बर और उठावना, दशाकर्म, तेरहवीं, पगड़ी रस्म या श्रद्धांजलि सभा जैसे उत्तरकार्य कार्यक्रमों की तारीख़ और स्थान रिश्तेदारों व परिचितों तक पहुँचाता है।'],
+    ['ऑनलाइन शोक संदेश कैसे बनाएँ?', 'मोबाइल नंबर से खाता बनाएँ, पिताजी, माताजी या श्रद्धांजलि सभा का नमूना चुनें, नाम, रिश्ते, फ़ोटो, कार्यक्रम की तारीख़ें और स्थान भरें — शोक संदेश का पेज तुरंत तैयार हो जाता है।'],
+    ['क्या शोक संदेश WhatsApp पर नाम के साथ भेज सकते हैं?', 'हाँ। हर रिश्तेदार के लिए “श्रीमान / आदरणीय + नाम” वाला अलग लिंक या छपे हुए कार्ड जैसी फ़ोटो बनाकर सीधे WhatsApp पर भेज सकते हैं।'],
+    ['क्या यह सेवा निःशुल्क है?', 'हाँ, पूरी तरह निःशुल्क है। कोई विज्ञापन या शुल्क नहीं है।'],
+    ['शोक संदेश का पेज कब तक रहता है?', 'आख़िरी कार्यक्रम की तारीख़ (या आपकी चुनी तारीख़, अधिकतम 60 दिन) तक। उसके बाद पेज, फ़ोटो और फ़ोन नंबर अपने-आप हमेशा के लिए मिट जाते हैं।'],
+    ['क्या शोक संदेश अंग्रेज़ी में भी बन सकता है?', 'हाँ। हर शोक संदेश हिन्दी या अंग्रेज़ी में बनाया जा सकता है — शब्द, कार्यक्रम के नाम और तारीख़ें उसी भाषा में आती हैं।'],
+  ],
+  en: [
+    ['What is a shok sandesh?', 'A shok sandesh is a condolence message a family sends to relatives and friends to announce the passing of a loved one, along with the dates and venue of rituals such as Uthamna, Dashakarma, Tehravi, Pagdi Rasm or a prayer meeting.'],
+    ['How do I create a condolence message online?', 'Sign up with your mobile number, pick a template (father, mother or prayer meeting), fill in the name, relations, photo, ritual dates and venue — your condolence page is ready instantly.'],
+    ['Can I send it on WhatsApp with each person’s name?', 'Yes. Make a separate link with “Dear / Respected + name”, or a printed-style card image, for every relative and send it straight to WhatsApp.'],
+    ['Is it free?', 'Yes, completely free, with no ads.'],
+    ['How long does the page stay online?', 'Until the last ritual date (or a date you choose, at most 60 days). After that the page, photo and phone numbers are permanently deleted automatically.'],
+    ['Can I make it in Hindi or English?', 'Yes. Each message can be in Hindi or English — the wording, ritual names and dates all follow that language.'],
+  ],
+};
+
+function landingSeo(lang, origin) {
+  const L = pick(lang);
+  const url = origin + (lang === 'en' ? '/en' : '/');
+  const title = L('शोक संदेश ऑनलाइन बनाएँ – निःशुल्क उठावना, तेरहवीं व श्रद्धांजलि कार्ड',
+    'Create a Shok Sandesh Online – Free Condolence Message & Uthamna Card');
+  const description = L('अपने परिजन का सुंदर डिजिटल शोक संदेश मिनटों में बनाएँ — फ़ोटो, उत्तरकार्य कार्यक्रम (उठावना, दशाकर्म, तेरहवीं, पगड़ी रस्म), स्थान का नक्शा और परिवार के नंबर। हर रिश्तेदार को नाम के साथ WhatsApp पर भेजें। निःशुल्क।',
+    'Make a dignified digital condolence message (shok sandesh) in minutes — photo, rituals (Uthamna, Tehravi, Pagdi Rasm, prayer meeting), venue map and family contacts. Send it on WhatsApp with each relative’s name. Free, in Hindi or English.');
+  const image = origin + '/img/og-image.jpg';
+  return {
+    title, description, noindex: false, canonical: url,
+    alternates: { hi: origin + '/', en: origin + '/en', 'x-default': origin + '/' },
+    og: { title, description, url, image, imageAlt: L('शोक संदेश – ऑनलाइन शोक संदेश बनाएँ', 'Shok Sandesh – create a condolence message online'), imageSize: [1200, 630] },
+    jsonLd: [
+      {
+        '@context': 'https://schema.org', '@type': 'WebSite',
+        name: 'शोक संदेश', alternateName: ['Shok Sandesh', 'Condolence Message'], url: origin + '/', inLanguage: ['hi', 'en'],
+      },
+      {
+        '@context': 'https://schema.org', '@type': 'WebApplication',
+        name: L('शोक संदेश', 'Shok Sandesh'), url, description, inLanguage: lang,
+        applicationCategory: 'LifestyleApplication', operatingSystem: 'Any', image,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+        author: { '@type': 'Person', name: 'Nikhil Dubey', url: PORTFOLIO },
+      },
+      {
+        '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: lang,
+        mainEntity: FAQ[lang].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+      },
+    ],
+  };
+}
+
+export function landingPage({ user, lang, origin }) {
   const L = pick(lang);
   return appPage({
     lang,
     title: L('ऑनलाइन शोक संदेश बनाएँ', 'Create a condolence message online'),
+    seo: landingSeo(lang, origin),
     user,
     width: 'max-w-2xl',
     body: html`
@@ -65,6 +120,20 @@ export function landingPage({ user, lang }) {
           <li>${L('पेज गूगल पर नहीं दिखता — सिर्फ़ जिन्हें आप लिंक भेजें, वही देख सकते हैं।', 'Pages are hidden from Google — only people you send the link to can see them.')}</li>
           <li>${L('कोई विज्ञापन नहीं, कोई शुल्क नहीं।', 'No ads, no charges.')}</li>
         </ul>
+      </section>
+
+      <section aria-labelledby="faq">
+        <h2 id="faq" class="section-title !text-xl"><span aria-hidden="true" class="rule"></span><span>${L('अक्सर पूछे जाने वाले प्रश्न', 'Frequently asked questions')}</span><span aria-hidden="true" class="rule rule-r"></span></h2>
+        <div class="flex flex-col gap-2">
+          ${FAQ[lang].map(([q, a]) => html`
+          <details class="panel group px-4 py-3">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 font-bold text-maroon-800 [&::-webkit-details-marker]:hidden">
+              <h3 class="text-[1rem]">${q}</h3>
+              <span aria-hidden="true" class="shrink-0 text-gold-700 transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-2 text-[0.95rem] leading-relaxed text-maroon-900/80">${a}</p>
+          </details>`)}
+        </div>
       </section>`,
   });
 }

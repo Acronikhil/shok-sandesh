@@ -13,7 +13,12 @@ export const corners = (size = 'size-12 sm:size-16') => html`
   <svg aria-hidden="true" class="absolute right-0 bottom-0 ${size} -scale-100 text-gold-700"><use href="#corner"/></svg>`;
 
 // Full HTML document.
-export function page({ lang = 'hi', title, description = '', body, head = '', scripts = [], noindex = true, og = null }) {
+// Every page is noindex unless it opts in: family cards carry names and phone numbers and must
+// never show up in search. Only the public landing pages set noindex: false.
+//   canonical   absolute URL of this page
+//   alternates  { hi: url, en: url, 'x-default': url } → <link rel="alternate" hreflang>
+//   jsonLd      structured data object(s) for Google
+export function page({ lang = 'hi', title, description = '', body, head = '', scripts = [], noindex = true, og = null, canonical = '', alternates = null, jsonLd = null }) {
   return html`<!doctype html>
 <html lang="${lang}">
 <head>
@@ -21,12 +26,19 @@ export function page({ lang = 'hi', title, description = '', body, head = '', sc
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${title}</title>
 ${description ? html`<meta name="description" content="${description}">` : ''}
-${noindex ? raw('<meta name="robots" content="noindex, nofollow">') : ''}
+${raw(noindex ? '<meta name="robots" content="noindex, nofollow, noimageindex">' : '<meta name="robots" content="index, follow, max-image-preview:large">')}
+${canonical ? html`<link rel="canonical" href="${canonical}">` : ''}
+${alternates ? Object.entries(alternates).map(([hl, href]) => html`<link rel="alternate" hreflang="${hl}" href="${href}">`) : ''}
 ${og ? html`<meta property="og:type" content="website">
+<meta property="og:site_name" content="${lang === 'en' ? 'Shok Sandesh' : 'शोक संदेश'}">
+<meta property="og:locale" content="${lang === 'en' ? 'en_IN' : 'hi_IN'}">
 <meta property="og:title" content="${og.title}">
 <meta property="og:description" content="${og.description}">
 <meta property="og:url" content="${og.url}">
-${og.image ? html`<meta property="og:image" content="${og.image}"><meta name="twitter:card" content="summary_large_image">` : ''}` : ''}
+<meta name="twitter:title" content="${og.title}">
+<meta name="twitter:description" content="${og.description}">
+${og.image ? html`<meta property="og:image" content="${og.image}">${og.imageAlt ? html`<meta property="og:image:alt" content="${og.imageAlt}">` : ''}${og.imageSize ? html`<meta property="og:image:width" content="${og.imageSize[0]}"><meta property="og:image:height" content="${og.imageSize[1]}">` : ''}<meta name="twitter:card" content="summary_large_image">` : ''}` : ''}
+${jsonLd ? html`<script type="application/ld+json">${raw(JSON.stringify(jsonLd).replace(/</g, '\\u003c'))}</script>` : ''}
 <meta name="theme-color" content="#5a1608">
 <link rel="icon" href="${raw(FAVICON)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,11 +61,26 @@ export const langSwitch = lang => {
   return html`<a href="/lang?l=${other}" lang="${other}" class="rounded-full border border-gold-500/70 bg-cream-50 px-2.5 py-0.5 text-sm font-semibold text-maroon-800 hover:bg-gold-100">${LANGS[other]}</a>`;
 };
 
-export function appPage({ lang = 'hi', title, user = null, width = 'max-w-xl', body, scripts = [], back = null }) {
+// Credit line at the bottom of every page, in that page's language.
+const PORTFOLIO = 'https://www.dubeynikhil.in/';
+const PAPA_CARD = 'https://shok.message.dubeynikhil.in/';
+export function siteFooter(lang = 'hi') {
+  const link = (href, text) => html`<a href="${href}" target="_blank" rel="noopener" class="font-semibold text-maroon-800 underline decoration-gold-500/70 underline-offset-4 hover:decoration-maroon-800">${text}</a>`;
+  return html`
+<footer lang="${lang}" class="mx-auto max-w-xl px-4 pt-2 pb-6 text-center text-sm leading-relaxed text-pretty text-maroon-900/65">
+  <span aria-hidden="true" class="mx-auto mb-2 block h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></span>
+  ${lang === 'en'
+    ? html`Created with <span aria-label="love">❤️</span> by ${link(PORTFOLIO, 'Nikhil Dubey')} in memory of ${link(PAPA_CARD, 'Late Shri Purnanand Dubey')}`
+    : html`${link(PAPA_CARD, 'स्व. श्री पूर्णानंद जी दुबे')} की स्मृति में ${link(PORTFOLIO, 'निखिल दुबे')} द्वारा <span aria-label="प्रेम">❤️</span> से निर्मित`}
+</footer>`;
+}
+
+export function appPage({ lang = 'hi', title, user = null, width = 'max-w-xl', body, scripts = [], back = null, seo = null }) {
   const L = pick(lang);
   return page({
     lang,
-    title: `${title} – ${L('शोक संदेश', 'Shok Sandesh')}`,
+    title: seo?.title || `${title} – ${L('शोक संदेश', 'Shok Sandesh')}`,
+    ...(seo || {}),
     scripts,
     body: html`
 ${CORNER_SYMBOL}
@@ -77,7 +104,8 @@ ${CORNER_SYMBOL}
       ${body}
     </main>
   </div>
-</div>`,
+</div>
+${siteFooter(lang)}`,
   });
 }
 

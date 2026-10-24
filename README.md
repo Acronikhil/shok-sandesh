@@ -31,6 +31,20 @@ and keeps dates; typed names stay as typed. Site text is inline: `const L = pick
 To add a language: add a `LOCALE` entry, the template texts in `TEMPLATES`, shloka labels/sources,
 `makeAnnouncement` grammar, and the second string in each `L(...)` call (or extend `pick`).
 
+## SEO
+
+Only the home page is meant for Google: `/` (Hindi) and `/en` (English). Each has its own title,
+description, canonical URL, `hreflang` links to the other, Open Graph/Twitter tags with
+`public/img/og-image.jpg` (1200×630, <300 KB for WhatsApp), JSON-LD (`WebSite`, `WebApplication`,
+`FAQPage`) and a visible FAQ. `public/robots.txt` and `public/sitemap.xml` list them.
+
+**Everything else is `noindex`**: meta tag plus an `X-Robots-Tag` header set in `worker.js`
+(`INDEXABLE`). Family cards hold names and phone numbers and must never be searchable. `robots.txt`
+deliberately does not block `/s/`, so crawlers can see that noindex.
+
+Search tags always use `https://shoksandesh.dubeynikhil.in` (`SITE` in `worker.js`). If the domain
+changes, update it there, in `robots.txt` and in `sitemap.xml`.
+
 ## Stack
 
 Cloudflare Workers (free plan) + **D1** (Cloudflare's hosted SQLite). No server to look after.

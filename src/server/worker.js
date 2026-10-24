@@ -22,6 +22,13 @@ const sameOrigin = (req, url) => req.headers.get('Origin') === url.origin;
 
 // Site language: a cookie set by /lang; Hindi until the visitor picks English.
 const siteLang = req => langOf((req.headers.get('Cookie') || '').match(/(?:^|;\s*)lang=(\w+)/)?.[1]);
+const langCookie = l => `lang=${l}; Path=/; Max-Age=31536000; Secure; SameSite=Lax`;
+
+// Only the two home pages may appear in search results. Everything else — above all the family
+// cards and their photos, which hold names and phone numbers — is marked noindex.
+const INDEXABLE = new Set(['/', '/en']);
+// Canonical address used in search tags, whatever host or scheme a request came in on.
+const SITE = 'https://shoksandesh.dubeynikhil.in';
 
 async function readJson(req) {
   try { return await req.json(); } catch (e) { return null; }
@@ -181,10 +188,14 @@ async function handle(req, env) {
       const ref = new URL(req.headers.get('Referer') || '');
       if (ref.origin === url.origin) back = ref.pathname + ref.search;
     } catch (e) {}
-    return redirect(back, { 'Set-Cookie': `lang=${l}; Path=/; Max-Age=31536000; Secure; SameSite=Lax` });
+    // The home page has one address per language (for Google): / is Hindi, /en is English.
+    if (back === '/' || back === '/en') back = l === 'en' ? '/en' : '/';
+    return redirect(back, { 'Set-Cookie': langCookie(l) });
   }
 
-  if (path === '/') return htmlRes(landingPage({ user, lang }));
+  if (path === '/') return lang === 'en' ? redirect('/en') : htmlRes(landingPage({ user, lang, origin: SITE }));
+  // Arriving on /en (e.g. from Google) also switches the rest of the site to English.
+  if (path === '/en') return htmlRes(landingPage({ user, lang: 'en', origin: SITE }), 200, lang === 'en' ? {} : { 'Set-Cookie': langCookie('en') });
   if (path === '/demo') {
     // ?card=en shows the English sample regardless of the site language
     const cardLang = LANGS[url.searchParams.get('card')] ? url.searchParams.get('card') : lang;
@@ -267,6 +278,7 @@ export default {
     }
     res = new Response(res.body, res);
     for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.headers.set(k, v);
+    if (!INDEXABLE.has(new URL(req.url).pathname) || res.status !== 200) res.headers.set('X-Robots-Tag', 'noindex, nofollow, noimageindex');
     return res;
   },
 
