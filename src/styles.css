@@ -3,6 +3,8 @@
 @source "../index.html";
 @source "../send.html";
 @source "../generator.html";
+@source "./server";
+@source "../public/js";
 
 @theme {
   --font-sans: "Mukta", "Noto Sans Devanagari", "Mangal", sans-serif;

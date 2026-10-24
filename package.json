@@ -1,10 +1,15 @@
 {
   "name": "shok-sandesh",
   "version": "1.0.0",
-  "description": "शोक संदेश – स्व. श्री पूर्णानंद जी दुबे",
+  "description": "शोक संदेश – ऑनलाइन शोक संदेश बनाएँ और नाम के साथ भेजें",
   "scripts": {
-    "build": "tailwindcss -i src/styles.css -o assets/styles.css --minify",
-    "dev": "tailwindcss -i src/styles.css -o assets/styles.css --watch"
+    "build": "tailwindcss -i src/styles.css -o public/styles.css --minify",
+    "build:legacy": "tailwindcss -i src/styles.css -o assets/styles.css --minify",
+    "dev": "npm run build && npm run db:migrate:local && wrangler dev",
+    "dev:css": "tailwindcss -i src/styles.css -o public/styles.css --watch",
+    "db:migrate:local": "wrangler d1 migrations apply shok-sandesh --local",
+    "db:migrate:remote": "wrangler d1 migrations apply shok-sandesh --remote",
+    "deploy": "npm run build && npm run db:migrate:remote && wrangler deploy"
   },
   "repository": {
     "type": "git",
@@ -16,7 +21,10 @@
   "homepage": "https://github.com/Acronikhil/shok-sandesh#readme",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3"
+    "qrcode-generator": "^2.0.4",
+    "tailwindcss": "^4.3.3",
+    "wrangler": "^4.152.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }

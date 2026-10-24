@@ -1,0 +1,33 @@
+{
+	// Cloudflare Workers (free plan) + D1 (hosted SQLite).
+	// Live site: the original card stays on GitHub Pages at shok.message.dubeynikhil.in;
+	// this app gets its own hostname below (custom domain; Cloudflare creates the DNS record itself).
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "shok-sandesh",
+	"main": "src/server/worker.js",
+	"compatibility_date": "2026-10-01",
+	"routes": [
+		{ "pattern": "shoksandesh.dubeynikhil.in", "custom_domain": true }
+	],
+	"assets": {
+		"directory": "public",
+		"binding": "ASSETS"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "shok-sandesh",
+			"database_id": "983e356b-f807-4a1c-8a02-bcefcdb4dbab",
+			"migrations_dir": "migrations"
+		}
+	],
+	// Every night at 00:05 IST: delete messages whose last programme / expiry date has passed.
+	"triggers": {
+		"crons": [
+			"35 18 * * *"
+		]
+	},
+	"observability": {
+		"enabled": true
+	}
+}
